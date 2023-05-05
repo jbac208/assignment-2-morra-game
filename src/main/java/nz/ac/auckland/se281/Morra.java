@@ -34,6 +34,7 @@ public class Morra {
     // Assign valid inputs
     String userFingers = input.substring(0, input.indexOf(" "));
     String userSum = input.substring(input.indexOf(" ") + 1);
+    // Print info
     MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
   }
 
