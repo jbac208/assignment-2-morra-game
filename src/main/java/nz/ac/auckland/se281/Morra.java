@@ -19,28 +19,38 @@ public class Morra {
     roundCount++; // Iterate roundCount
     MessageCli.START_ROUND.printMessage(Integer.toString(roundCount)); // Pretty print roundCount
 
-    // Initialise user input variables
-    int userFingers = -1;
-    int userSum = -1;
-    // Get valid user input
-    while (!(userFingers >= 1 && userFingers <= 5 && userSum >= 1 && userSum <= 10)) {
-      // Get input
+    // Initialise user input
+    String input = "";
+    // Loop until got valid user input
+    while (!isInputvalid(input)) {
       MessageCli.ASK_INPUT.printMessage();
-      String input = Utils.scanner.nextLine();
-      // Try assign input values
-      try {
-        userFingers = Integer.parseInt(input.substring(0, input.indexOf(" ")));
-        userSum = Integer.parseInt(input.substring(input.indexOf(" ") + 1));
-        if (!(userFingers >= 1 && userFingers <= 5 && userSum >= 1 && userSum <= 10)) {
-          MessageCli.INVALID_INPUT.printMessage();
-        }
-      }
-      catch (Exception e) {
+      input = Utils.scanner.nextLine();
+      // If invalid input, print error message
+      if (!isInputvalid(input)) {
         MessageCli.INVALID_INPUT.printMessage();
       }
     }
-    MessageCli.PRINT_INFO_HAND.printMessage(
-        userName, Integer.toString(userFingers), Integer.toString(userSum));
+
+    // Assign valid inputs
+    String userFingers = input.substring(0, input.indexOf(" "));
+    String userSum = input.substring(input.indexOf(" ") + 1);
+    MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
+  }
+
+  private boolean isInputvalid(String input) {
+    // determines validity of userInput based off given criteria
+    int userFingers = -1;
+    int userSum = -1;
+    try {
+      userFingers = Integer.parseInt(input.substring(0, input.indexOf(" ")));
+      userSum = Integer.parseInt(input.substring(input.indexOf(" ") + 1));
+      if (!(userFingers >= 1 && userFingers <= 5 && userSum >= 1 && userSum <= 10)) {
+        return false;
+      }
+    } catch (Exception e) {
+      return false;
+    }
+    return true;
   }
 
   public void showStats() {}
