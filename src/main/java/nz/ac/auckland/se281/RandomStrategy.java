@@ -1,10 +1,26 @@
 package nz.ac.auckland.se281;
 
 public class RandomStrategy implements Strategy {
+  private int fingers;
+  private int sum;
 
   @Override
-  public int chooseFingers() {}
+  public void chooseFingers() {
+    fingers = Utils.getRandomNumber(1, 5);
+  }
 
   @Override
-  public int chooseSum() {}
+  public void chooseSum() {
+    sum = Utils.getRandomNumber(fingers + 1, fingers + 5);
+  }
+
+  @Override
+  public int getFingers() {
+    return fingers;
+  }
+
+  @Override
+  public int getSum() {
+    return sum;
+  }
 }
