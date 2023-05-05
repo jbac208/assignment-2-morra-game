@@ -7,11 +7,18 @@ public class Morra {
   // Global variables
   private int roundCount = 0;
   private String userName;
+  private final String aiName = "Jarvis";
+  private int pointsToWin;
+  private Difficulty difficulty;
 
   public Morra() {}
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
-    userName = options[0];
+    this.difficulty = difficulty;
+    this.userName = options[0];
+    this.pointsToWin = pointsToWin;
+
+    // Print welcome message
     MessageCli.WELCOME_PLAYER.printMessage(userName);
   }
 
@@ -36,6 +43,32 @@ public class Morra {
     String userSum = input.substring(input.indexOf(" ") + 1);
     // Print info
     MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
+
+    // Implement Jarvis
+    Strategy strategy = null;
+    switch (difficulty) {
+      case EASY:
+        strategy = new RandomStrategy();
+        strategy.chooseFingers();
+        strategy.chooseSum();
+        break;
+
+      case MEDIUM:
+        // todo
+        break;
+
+      case HARD:
+        // todo
+        break;
+
+      case MASTER:
+        // todo
+        break;
+    }
+
+    // Print ai hand info
+    MessageCli.PRINT_INFO_HAND.printMessage(
+        aiName, Integer.toString(strategy.getFingers()), Integer.toString(strategy.getSum()));
   }
 
   private boolean isInputvalid(String input) {
@@ -53,6 +86,8 @@ public class Morra {
     }
     return true;
   }
+
+  private void easyDifficulty() {}
 
   public void showStats() {}
 }
