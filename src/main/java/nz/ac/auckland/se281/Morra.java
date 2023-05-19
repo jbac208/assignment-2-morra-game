@@ -46,6 +46,7 @@ public class Morra {
 
     // Implement Jarvis
     Game strategy = GameFactory.createGame(difficulty);
+    strategy.play(); // runs finger and sum guessing
 
     // Print ai hand info
     MessageCli.PRINT_INFO_HAND.printMessage(
