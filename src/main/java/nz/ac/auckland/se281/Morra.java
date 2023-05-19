@@ -45,12 +45,11 @@ public class Morra {
     MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
 
     // Implement Jarvis
-    Strategy strategy = null;
+    Game strategy = null;
     switch (difficulty) {
       case EASY:
-        strategy = new RandomStrategy();
-        strategy.chooseFingers();
-        strategy.chooseSum();
+        strategy = new Game(new RandomStrategy());
+        strategy.play();
         break;
 
       case MEDIUM:
@@ -69,6 +68,30 @@ public class Morra {
     // Print ai hand info
     MessageCli.PRINT_INFO_HAND.printMessage(
         aiName, Integer.toString(strategy.getFingers()), Integer.toString(strategy.getSum()));
+
+    printRoundSummary(
+        Integer.parseInt(userFingers),
+        Integer.parseInt(userSum),
+        strategy.getFingers(),
+        strategy.getSum());
+  }
+
+  private void printRoundSummary(int pFingers, int pSum, int jarvisFingers, int jarvisSum) {
+    // param sums are the guesses of player & jarvis
+    int finalSum = pFingers + jarvisFingers;
+    if (pSum == finalSum && jarvisSum == finalSum) {
+      // both corrct (draw)
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    } else if (pSum == finalSum) {
+      // p win
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+    } else if (jarvisSum == finalSum) {
+      // jarvis win
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+    } else {
+      // both wrong (draw)
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
   }
 
   private boolean isInputvalid(String input) {
@@ -86,8 +109,6 @@ public class Morra {
     }
     return true;
   }
-
-  private void easyDifficulty() {}
 
   public void showStats() {}
 }
