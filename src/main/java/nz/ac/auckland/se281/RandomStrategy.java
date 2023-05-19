@@ -15,6 +15,11 @@ public class RandomStrategy implements Strategy {
   }
 
   @Override
+  public void play() {
+    
+  }
+
+  @Override
   public int getFingers() {
     return fingers;
   }
