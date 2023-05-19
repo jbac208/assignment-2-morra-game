@@ -97,13 +97,5 @@ public class Morra {
     return true;
   }
 
-  public int getRoundCount() {
-    return roundCount;
-  }
-
-  public int getPlayerTotalFingers() {
-    return playerTotalFingers;
-  }
-
   public void showStats() {}
 }
