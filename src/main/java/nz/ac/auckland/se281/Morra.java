@@ -45,25 +45,7 @@ public class Morra {
     MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
 
     // Implement Jarvis
-    Game strategy = null;
-    switch (difficulty) {
-      case EASY:
-        strategy = new Game(new RandomStrategy());
-        strategy.play();
-        break;
-
-      case MEDIUM:
-        // todo
-        break;
-
-      case HARD:
-        // todo
-        break;
-
-      case MASTER:
-        // todo
-        break;
-    }
+    Game strategy = GameFactory.createGame(difficulty);
 
     // Print ai hand info
     MessageCli.PRINT_INFO_HAND.printMessage(
