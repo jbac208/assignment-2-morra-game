@@ -6,6 +6,7 @@ public class Morra {
 
   // Global variables
   private int roundCount = 0;
+  private int playerTotalFingers = 0;
   private String userName;
   private final String aiName = "Jarvis";
   private int pointsToWin;
@@ -41,7 +42,7 @@ public class Morra {
     // Assign valid inputs
     String userFingers = input.substring(0, input.indexOf(" "));
     String userSum = input.substring(input.indexOf(" ") + 1);
-    // Print info
+    // Print player hand info
     MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
 
     // Implement Jarvis (Factory design pattern)
@@ -57,6 +58,9 @@ public class Morra {
         Integer.parseInt(userSum),
         stratRunner.getFingers(),
         stratRunner.getSum());
+
+    // Increment total player fingers at round termination
+    playerTotalFingers++;
   }
 
   private void printRoundSummary(int pFingers, int pSum, int jarvisFingers, int jarvisSum) {
@@ -91,6 +95,14 @@ public class Morra {
       return false;
     }
     return true;
+  }
+
+  public int getRoundCount() {
+    return roundCount;
+  }
+
+  public int getPlayerTotalFingers() {
+    return playerTotalFingers;
   }
 
   public void showStats() {}
