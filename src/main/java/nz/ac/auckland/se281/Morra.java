@@ -44,19 +44,19 @@ public class Morra {
     // Print info
     MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
 
-    // Implement Jarvis
-    Game strategy = GameFactory.createGame(difficulty);
-    strategy.play(); // runs finger and sum guessing
+    // Implement Jarvis (Factory design pattern)
+    StratRunner stratRunner = GameFactory.createGame(difficulty);
+    stratRunner.runStrat(); // runs finger and sum guessing
 
     // Print ai hand info
     MessageCli.PRINT_INFO_HAND.printMessage(
-        aiName, Integer.toString(strategy.getFingers()), Integer.toString(strategy.getSum()));
+        aiName, Integer.toString(stratRunner.getFingers()), Integer.toString(stratRunner.getSum()));
 
     printRoundSummary(
         Integer.parseInt(userFingers),
         Integer.parseInt(userSum),
-        strategy.getFingers(),
-        strategy.getSum());
+        stratRunner.getFingers(),
+        stratRunner.getSum());
   }
 
   private void printRoundSummary(int pFingers, int pSum, int jarvisFingers, int jarvisSum) {

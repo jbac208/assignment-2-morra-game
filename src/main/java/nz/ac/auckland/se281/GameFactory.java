@@ -4,10 +4,10 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class GameFactory {
 
-  public static Game createGame(Difficulty difficulty) {
+  public static StratRunner createGame(Difficulty difficulty) {
     switch (difficulty) {
       case EASY:
-        return new Game(new RandomStrategy());
+        return new EasyStratRunner();
 
       case MEDIUM:
         // todo

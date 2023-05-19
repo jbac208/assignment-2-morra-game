@@ -13,9 +13,9 @@ public class Game {
     this.strategy = strategy;
   }
 
-  public void play() {
-    this.fingers = strategy.chooseAndGetFingers();
-    this.sum = strategy.chooseAndGetSum(this.fingers);
+  public void chooseFingersAndSum() {
+    this.fingers = strategy.chooseFingers();
+    this.sum = strategy.chooseSum(this.fingers);
   }
 
   public int getFingers() {

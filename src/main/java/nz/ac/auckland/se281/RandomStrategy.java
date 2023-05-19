@@ -3,12 +3,12 @@ package nz.ac.auckland.se281;
 public class RandomStrategy implements Strategy {
 
   @Override
-  public int chooseAndGetFingers() {
+  public int chooseFingers() {
     return Utils.getRandomNumber(1, 5);
   }
 
   @Override
-  public int chooseAndGetSum(int fingers) {
+  public int chooseSum(int fingers) {
     return Utils.getRandomNumber(fingers + 1, fingers + 5);
   }
 }
