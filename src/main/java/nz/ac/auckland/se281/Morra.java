@@ -60,7 +60,7 @@ public class Morra {
         stratRunner.getSum());
 
     // Increment total player fingers at round termination
-    playerTotalFingers++;
+    playerTotalFingers += Integer.parseInt(userFingers);
   }
 
   private void printRoundSummary(int pFingers, int pSum, int jarvisFingers, int jarvisSum) {

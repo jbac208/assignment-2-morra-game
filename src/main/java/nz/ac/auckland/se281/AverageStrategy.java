@@ -23,9 +23,6 @@ public class AverageStrategy implements Strategy {
   }
 
   private int calculateAverageFingers() {
-    if (roundCount == 0) {
-      return 0; // Return 0 if no rounds have been played (to avoid division by zero)
-    }
     return Math.round(
         (float) playerTotalFingers
             / roundCount); // Calculate and return the average (rounded to the nearest integer)
