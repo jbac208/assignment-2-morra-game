@@ -46,7 +46,7 @@ public class Morra {
     MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
 
     // Implement Jarvis (Factory design pattern)
-    StratRunner stratRunner = GameFactory.createGame(difficulty);
+    StratRunner stratRunner = GameFactory.createGame(difficulty, roundCount, playerTotalFingers);
     stratRunner.runStrat(); // runs finger and sum guessing
 
     // Print ai hand info
