@@ -10,8 +10,7 @@ public class GameFactory {
         return new EasyStratRunner();
 
       case MEDIUM:
-        // todo
-        return null;
+        return new MediumStratRunner();
 
       case HARD:
         // todo
