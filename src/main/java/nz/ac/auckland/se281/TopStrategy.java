@@ -7,7 +7,7 @@ public class TopStrategy implements Strategy {
 
   private ArrayList<Integer> playerFingersArrayList;
 
-  public TopStrategy(int roundCount, ArrayList<Integer> playerFingersArrayList) {
+  public TopStrategy(ArrayList<Integer> playerFingersArrayList) {
     this.playerFingersArrayList = playerFingersArrayList;
   }
 

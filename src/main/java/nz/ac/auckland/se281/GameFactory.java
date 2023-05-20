@@ -1,7 +1,7 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.Main.Difficulty;
 import java.util.ArrayList;
+import nz.ac.auckland.se281.Main.Difficulty;
 
 public class GameFactory {
 
@@ -16,8 +16,7 @@ public class GameFactory {
         return new MediumStratRunner(roundCount, playerFingersArrayList);
 
       case HARD:
-        // todo
-        return null;
+        return new HardStratRunner(roundCount, playerFingersArrayList);
 
       case MASTER:
         // todo
