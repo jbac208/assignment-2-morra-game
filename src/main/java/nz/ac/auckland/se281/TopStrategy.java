@@ -2,7 +2,6 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class TopStrategy implements Strategy {
 
@@ -25,7 +24,7 @@ public class TopStrategy implements Strategy {
 
   private int findMostFreqFingerVal() {
     // Create a HashMap to store the frequency of each integer
-    Map<Integer, Integer> frequencyMap = new HashMap<>();
+    HashMap<Integer, Integer> frequencyMap = new HashMap<Integer, Integer>();
 
     // Iterate over the numbers and count the frequency of each integer
     for (Integer num : playerFingersArrayList) {
@@ -40,7 +39,7 @@ public class TopStrategy implements Strategy {
     int mostCommonInteger = 0;
     int maxFrequency = 0;
 
-    for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+    for (HashMap.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
       if (entry.getValue() > maxFrequency) {
         mostCommonInteger = entry.getKey();
         maxFrequency = entry.getValue();
