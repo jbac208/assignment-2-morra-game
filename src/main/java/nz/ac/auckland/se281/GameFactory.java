@@ -19,8 +19,7 @@ public class GameFactory {
         return new HardStratRunner(roundCount, playerFingersArrayList);
 
       case MASTER:
-        // todo
-        return null;
+        return new MasterStratRunner(roundCount, playerFingersArrayList);
     }
     return null;
   }
