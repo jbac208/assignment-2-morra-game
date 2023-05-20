@@ -85,7 +85,15 @@ public class Morra {
 
       // Check if endGame
       if (isGameOver()) {
-        // check who won and print summary?
+        // Print who won, and end game
+        if (userPoints == pointsToWin) {
+          // player won
+          MessageCli.END_GAME.printMessage(userName, Integer.toString(roundCount));
+
+        } else {
+          MessageCli.END_GAME.printMessage(aiName, Integer.toString(roundCount));
+        }
+        inGame = false; // end the game
       }
 
     } else {
@@ -108,9 +116,11 @@ public class Morra {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     } else if (pSum == finalSum) {
       // p win
+      userPoints++;
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
     } else if (jarvisSum == finalSum) {
       // jarvis win
+      aiPoints++;
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
     } else {
       // both wrong (draw)
