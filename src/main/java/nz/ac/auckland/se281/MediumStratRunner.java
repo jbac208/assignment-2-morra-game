@@ -13,7 +13,7 @@ public class MediumStratRunner implements StratRunner {
 
   @Override
   public void runStrat() {
-    if (roundCount == 4) {
+    if (roundCount >= 4) {
       // from 4th round onwards use avg strat
       strat.setStrategy(new AverageStrategy(roundCount, playerTotalFingers)); // pass params
     }
