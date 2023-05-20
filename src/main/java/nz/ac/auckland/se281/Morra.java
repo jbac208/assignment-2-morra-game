@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
@@ -7,6 +8,7 @@ public class Morra {
   // Global variables
   private int roundCount = 0;
   private int playerTotalFingers;
+  private ArrayList<Integer> fingers = new ArrayList<Integer>();
   private String userName;
   private final String aiName = "Jarvis";
   private int pointsToWin;
