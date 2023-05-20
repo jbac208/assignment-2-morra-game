@@ -6,7 +6,7 @@ public class Morra {
 
   // Global variables
   private int roundCount = 0;
-  private int playerTotalFingers = 0;
+  private int playerTotalFingers;
   private String userName;
   private final String aiName = "Jarvis";
   private int pointsToWin;
@@ -18,6 +18,7 @@ public class Morra {
     this.difficulty = difficulty;
     this.userName = options[0];
     this.pointsToWin = pointsToWin;
+    this.playerTotalFingers = 0;
 
     // Print welcome message
     MessageCli.WELCOME_PLAYER.printMessage(userName);
