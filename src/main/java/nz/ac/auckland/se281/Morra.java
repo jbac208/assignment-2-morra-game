@@ -6,12 +6,21 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Morra {
 
   // Global variables
-  private int roundCount = 0;
+  private int roundCount;
+  // Array list of history of user finger vals
   private ArrayList<Integer> playerFingersArrayList = new ArrayList<Integer>();
+  // Other variables
   private String userName;
   private final String aiName = "Jarvis";
   private int pointsToWin;
   private Difficulty difficulty;
+
+  // points variables
+  private int userPoints;
+  private int aiPoints;
+
+  // game status
+  private boolean inGame = false;
 
   public Morra() {}
 
@@ -23,49 +32,72 @@ public class Morra {
     // Reset every newGame
     this.playerFingersArrayList.clear();
     this.roundCount = 0;
+    this.userPoints = 0;
+    this.aiPoints = 0;
+    this.inGame = true;
 
     // Print welcome message
     MessageCli.WELCOME_PLAYER.printMessage(userName);
   }
 
   public void play() {
-    roundCount++; // Iterate roundCount
-    MessageCli.START_ROUND.printMessage(Integer.toString(roundCount)); // Pretty print roundCount
+    if (inGame) {
+      roundCount++; // Iterate roundCount
+      MessageCli.START_ROUND.printMessage(Integer.toString(roundCount)); // Pretty print roundCount
 
-    // Initialise user input
-    String input = "";
-    // Loop until got valid user input
-    while (!isInputvalid(input)) {
-      MessageCli.ASK_INPUT.printMessage();
-      input = Utils.scanner.nextLine();
-      // If invalid input, print error message
-      if (!isInputvalid(input)) {
-        MessageCli.INVALID_INPUT.printMessage();
+      // Initialise user input
+      String input = "";
+      // Loop until got valid user input
+      while (!isInputvalid(input)) {
+        MessageCli.ASK_INPUT.printMessage();
+        input = Utils.scanner.nextLine();
+        // If invalid input, print error message
+        if (!isInputvalid(input)) {
+          MessageCli.INVALID_INPUT.printMessage();
+        }
       }
+
+      // Assign valid inputs
+      String userFingers = input.substring(0, input.indexOf(" "));
+      String userSum = input.substring(input.indexOf(" ") + 1);
+      // Print player hand info
+      MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
+
+      // Implement Jarvis (Factory design pattern)
+      StratRunner stratRunner =
+          GameFactory.createGame(difficulty, roundCount, playerFingersArrayList);
+      stratRunner.runStrat(); // runs finger and sum guessing
+
+      // Print ai hand info
+      MessageCli.PRINT_INFO_HAND.printMessage(
+          aiName,
+          Integer.toString(stratRunner.getFingers()),
+          Integer.toString(stratRunner.getSum()));
+
+      printRoundSummary(
+          Integer.parseInt(userFingers),
+          Integer.parseInt(userSum),
+          stratRunner.getFingers(),
+          stratRunner.getSum());
+
+      // Add player finger to history of userFingers
+      playerFingersArrayList.add(Integer.parseInt(userFingers));
+
+      // Check if endGame
+      if (isGameOver()) {
+        // check who won and print summary?
+      }
+
+    } else {
+      MessageCli.GAME_NOT_STARTED.printMessage();
     }
+  }
 
-    // Assign valid inputs
-    String userFingers = input.substring(0, input.indexOf(" "));
-    String userSum = input.substring(input.indexOf(" ") + 1);
-    // Print player hand info
-    MessageCli.PRINT_INFO_HAND.printMessage(userName, userFingers, userSum);
-
-    // Implement Jarvis (Factory design pattern)
-    StratRunner stratRunner = GameFactory.createGame(difficulty, roundCount, playerFingersArrayList);
-    stratRunner.runStrat(); // runs finger and sum guessing
-
-    // Print ai hand info
-    MessageCli.PRINT_INFO_HAND.printMessage(
-        aiName, Integer.toString(stratRunner.getFingers()), Integer.toString(stratRunner.getSum()));
-
-    printRoundSummary(
-        Integer.parseInt(userFingers),
-        Integer.parseInt(userSum),
-        stratRunner.getFingers(),
-        stratRunner.getSum());
-
-    // Add player finger to history of userFingers
-    playerFingersArrayList.add(Integer.parseInt(userFingers));
+  private boolean isGameOver() {
+    if (userPoints == pointsToWin || aiPoints == pointsToWin) {
+      return true;
+    }
+    return false;
   }
 
   private void printRoundSummary(int pFingers, int pSum, int jarvisFingers, int jarvisSum) {
