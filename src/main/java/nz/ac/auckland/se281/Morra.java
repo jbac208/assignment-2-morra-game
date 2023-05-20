@@ -18,7 +18,10 @@ public class Morra {
     this.difficulty = difficulty;
     this.userName = options[0];
     this.pointsToWin = pointsToWin;
+
+    // Reset every newGame
     this.playerTotalFingers = 0;
+    this.roundCount = 0;
 
     // Print welcome message
     MessageCli.WELCOME_PLAYER.printMessage(userName);
