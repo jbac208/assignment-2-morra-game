@@ -1,4 +1,5 @@
 package nz.ac.auckland.se281;
+
 import java.util.ArrayList;
 
 public class MediumStratRunner implements StratRunner {

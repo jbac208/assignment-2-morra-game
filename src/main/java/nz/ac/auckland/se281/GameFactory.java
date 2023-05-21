@@ -7,6 +7,7 @@ public class GameFactory {
 
   public static StratRunner createGame(
       Difficulty difficulty, int roundCount, ArrayList<Integer> playerFingersArrayList) {
+    // factory design pattern
 
     switch (difficulty) {
       case EASY:

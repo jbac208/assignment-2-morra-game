@@ -74,7 +74,7 @@ public class Morra {
           Integer.toString(stratRunner.getFingers()),
           Integer.toString(stratRunner.getSum()));
 
-      printRoundSummary(
+      printRoundsummary(
           Integer.parseInt(userFingers),
           Integer.parseInt(userSum),
           stratRunner.getFingers(),
@@ -108,7 +108,7 @@ public class Morra {
     return false;
   }
 
-  private void printRoundSummary(int pFingers, int pSum, int jarvisFingers, int jarvisSum) {
+  private void printRoundsummary(int pFingers, int pSum, int jarvisFingers, int jarvisSum) {
     // param sums are the guesses of player & jarvis
     int finalSum = pFingers + jarvisFingers;
     if (pSum == finalSum && jarvisSum == finalSum) {
@@ -130,8 +130,8 @@ public class Morra {
 
   private boolean isInputvalid(String input) {
     // determines validity of userInput based off given criteria
-    int userFingers = -1;
-    int userSum = -1;
+    int userFingers;
+    int userSum;
     try {
       userFingers = Integer.parseInt(input.substring(0, input.indexOf(" ")));
       userSum = Integer.parseInt(input.substring(input.indexOf(" ") + 1));
