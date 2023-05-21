@@ -48,11 +48,11 @@ public class Morra {
       // Initialise user input
       String input = "";
       // Loop until got valid user input
-      while (!isInputvalid(input)) {
+      while (!isInputValid(input)) {
         MessageCli.ASK_INPUT.printMessage();
         input = Utils.scanner.nextLine();
         // If invalid input, print error message
-        if (!isInputvalid(input)) {
+        if (!isInputValid(input)) {
           MessageCli.INVALID_INPUT.printMessage();
         }
       }
@@ -74,7 +74,7 @@ public class Morra {
           Integer.toString(stratRunner.getFingers()),
           Integer.toString(stratRunner.getSum()));
 
-      printRoundsummary(
+      printRoundSummary(
           Integer.parseInt(userFingers),
           Integer.parseInt(userSum),
           stratRunner.getFingers(),
@@ -102,19 +102,20 @@ public class Morra {
   }
 
   private boolean isGameOver() {
+    // checks if game is over
     if (userPoints == pointsToWin || aiPoints == pointsToWin) {
       return true;
     }
     return false;
   }
 
-  private void printRoundsummary(int pFingers, int pSum, int jarvisFingers, int jarvisSum) {
+  private void printRoundSummary(int userFingers, int userSum, int jarvisFingers, int jarvisSum) {
     // param sums are the guesses of player & jarvis
-    int finalSum = pFingers + jarvisFingers;
-    if (pSum == finalSum && jarvisSum == finalSum) {
+    int finalSum = userFingers + jarvisFingers;
+    if (userSum == finalSum && jarvisSum == finalSum) {
       // both corrct (draw)
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
-    } else if (pSum == finalSum) {
+    } else if (userSum == finalSum) {
       // p win
       userPoints++;
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
@@ -128,7 +129,7 @@ public class Morra {
     }
   }
 
-  private boolean isInputvalid(String input) {
+  private boolean isInputValid(String input) {
     // determines validity of userInput based off given criteria
     int userFingers;
     int userSum;
@@ -145,6 +146,7 @@ public class Morra {
   }
 
   public void showStats() {
+    // shows user and ai stats of the current game
     if (inGame) {
       MessageCli.PRINT_PLAYER_WINS.printMessage(
           userName, Integer.toString(userPoints), Integer.toString(pointsToWin - userPoints));
