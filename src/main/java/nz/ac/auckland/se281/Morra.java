@@ -145,6 +145,13 @@ public class Morra {
   }
 
   public void showStats() {
-    // todo
+    if (inGame) {
+      MessageCli.PRINT_PLAYER_WINS.printMessage(
+          userName, Integer.toString(userPoints), Integer.toString(pointsToWin - userPoints));
+      MessageCli.PRINT_PLAYER_WINS.printMessage(
+          aiName, Integer.toString(aiPoints), Integer.toString(pointsToWin - aiPoints));
+    } else {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+    }
   }
 }
